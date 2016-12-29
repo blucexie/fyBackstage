@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/jcDate.css">
+    <script type="text/javascript" src="js/jquery.1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jQuery-jcDate.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/userRecord.js"></script>
+	<script src="js/rollups/tripledes.js"></script>
+    <script src="js/components/mode-ecb.js"></script>
+    <script type='text/javascript'>
+        //日期控件
+        $(function () {
+            $(".jcDate").jcDate({
+                IcoClass : "jcDateIco",
+                Event : "click",
+                Speed : 100,
+                Left : 0,
+                Top : 28,
+                format : "-",
+                Timeout : 100
+            });
+        })
+    </script>
+    <title>充值记录</title>
+</head>
+<body>
+
+<div id="header">
+    <div id="logo">
+        <img src="images/logo.png" alt="">
+    </div>
+    <div class="login">
+        <span>欢迎您：</span><span class="companyName">北京风影数据科技有限公司</span>
+        <a href="###"><span class="repair">修改密码</span></a>
+        <a href="###"><span class="out">退出</span></a>
+    </div>
+</div>
+<div id="body" class="clearfix">
+    <div class="account">
+        <ul>
+            <li class="ol1"><i class="iconfont icon-zhanghua"></i>账户信息</li>
+            <li class="ol2"><i class="iconfont icon-jiekouguanlir"></i>接口记录</li>
+            <li class="ol3"><i class="iconfont icon-msnui-pie-chart"></i>查询报表</li>
+            <li class="ol4"><i class="iconfont icon-chongzhi"></i>账户充值</li>
+            <li class="active ol5"><i class="iconfont icon-chongzhijilu iActive"></i>充值记录</li>
+            <li class="ol6"><i class="iconfont icon-fcstubiao17"></i>企业信息</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="title">
+            充值记录
+        </div>
+        <div class="search">
+            开始时间 <input id="portStartTime" type="text" class="jcDate">
+            结束时间 <input id="portEndTime" class="jcDate"><br>
+            充值方式 <select class="costWay" name="" >
+            <option value="请选择">请选择</option>
+            <option value="支付宝">支付宝</option>
+            <option value="管理员">管理员</option>
+        </select>
+            <div class="button button1">
+                <a class="port" href="###">查 询</a>
+                <a class="reset" href="###">重 置</a>
+            </div>
+        </div>
+        <div class="table table-c">
+            <table >
+                <tr>
+                    <th>时间</th>
+                    <th>充值金额（元）</th>
+                    <th>充值人</th>
+                    <th>充值方式</th>
+                    <th>充值状态</th>
+                    <th>备注</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <p class="page">为您搜索到 <span class="all">...</span>条记录 当前<span class="start">1</span>/<span class="allPage">100</span>页
+                <a class="home" href="###">首页</a>
+                <a class="prev" href="###">上一页</a>
+                <a class="next" href="###">下一页</a>
+                <a class="end" href="###">尾页</a>
+                转到<select id="pullDown" name="">
+                </select> 页
+            </p>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>联系我们：<span>010-59423168</span> 企业邮箱：<span>service@funinbook.com</span></p>
+    <p>© 2015-2016 北京风影科技有限公司 京ICP备16015906号</p>
+</div>
+</body>
+</html>

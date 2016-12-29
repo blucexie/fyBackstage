@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script type="text/javascript" src="js/jquery.1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/userRecharge.js"></script>
+	<script src="js/rollups/tripledes.js"></script>
+    <script src="js/components/mode-ecb.js"></script>
+    <title>账户充值</title>
+</head>
+<body>
+
+<div id="header">
+    <div id="logo">
+        <img src="images/logo.png" alt="">
+    </div>
+    <div class="login">
+        <span>欢迎您：</span><span class="companyName">北京风影数据科技有限公司</span>
+        <a href="###"><span class="repair">修改密码</span></a>
+        <a href="###"><span class="out">退出</span></a>
+    </div>
+</div>
+<div id="body" class="clearfix">
+	<!--提交到支付宝-->
+	<form id="alipaysubmit" name="alipaysubmit" action="" method="get">
+		<!--接口名称-->
+		<input type="hidden" name="service" value=""/>
+		<!--签名方式-->
+		<input type="hidden" name="sign_type" value=""/>
+		<!--签名-->
+		<input type="hidden" name="sign" value=""/>
+		<!--合作者身份ID-->
+		<input type="hidden" name="partner" value=""/>
+		<!--卖家支付宝用户号-->
+		<input type="hidden" name="seller_id" value=""/>
+		<!--参数编码字符集-->
+		<input type="hidden" name="_input_charset" value=""/>
+		<!--支付类型-->
+		<input type="hidden" name="payment_type" value=""/>
+		<!--支付宝服务主动通知商户网站里指定的页面http路径。-->
+		<input type="hidden" name="notify_url" value=""/>
+		<!--支付宝服务被动通知商户网站里指定的页面http路径。-->
+		<input type="hidden" name="return_url" value=""/>
+		<!--商户网站唯一订单号-->
+		<input type="hidden" name="out_trade_no" value=""/>
+		<!--商品名称-->
+		<input type="hidden" name="subject" value=""/>
+		<!--充值金额-->
+		<input type="hidden" name="total_fee" value=""/>
+		<!--商品描述-->
+		<input type="hidden" name="body" value=""/>
+	</form>
+    <div class="account">
+        <ul>
+            <li class="ol1"><i class="iconfont icon-zhanghua"></i>账户信息</li>
+            <li class="ol2"><i class="iconfont icon-jiekouguanlir"></i>接口记录</li>
+            <li class="ol3"><i class="iconfont icon-msnui-pie-chart"></i>查询报表</li>
+            <li class="active ol4"><i class="iconfont icon-chongzhi iActive"></i>账户充值</li>
+            <li class="ol5"><i class="iconfont icon-chongzhijilu"></i>充值记录</li>
+            <li class="ol6"><i class="iconfont icon-fcstubiao17"></i>企业信息</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="title">
+            账户充值
+        </div>
+        <div class="recharge">
+            <em>账户余额：</em><span class="balance"></span><br>
+            金额充值：<div><input class="rec" type="button" value="10000">
+            <input class="rec" type="button" value="30000">
+            <input class="rec" type="button" value="50000">
+            <input class="rec" type="button" value="100000"></div><br>
+            <input class="shuru" type="text"><span class="yuan">元</span><br>
+            支付方式：<input class="pay" type="button"><br>
+            <input class="btn btn-2" type="button" value="充 值">
+        </div>
+    </div>
+</div>
+<!--<div class="success">
+    <span>恭喜您：充值成功!</span>
+    <span>恭喜您：充值成功!</span>
+    <span>恭喜您：充值成功!</span>
+</div>-->
+<div class="error">
+    <div class="error1">
+    <span>很遗憾，充值失败！有疑问请联系<a href="">管理员</a></span>
+    <span>很遗憾，充值失败！有疑问请联系<a href="">管理员</a></span>
+    <span>很遗憾，充值失败！有疑问请联系<a href="">管理员</a></span>
+    </div>
+</div>
+<div id="footer1">
+    <p>联系我们：<span>010-59423168</span> 企业邮箱：<span>service@funinbook.com</span></p>
+    <p>© 2015-2016 北京风影科技有限公司 京ICP备16015906号</p>
+</div>
+</body>
+</html>

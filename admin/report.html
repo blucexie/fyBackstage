@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/jcDate.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script type="text/javascript" src="js/jquery.1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jQuery-jcDate.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/report.js"></script>
+    <script src="js/rollups/tripledes.js"></script>
+    <script src="js/components/mode-ecb.js"></script>
+    <script type='text/javascript'>
+        $(function () {
+            //日期控件
+            $(".jcDate").jcDate({
+                IcoClass : "jcDateIco",
+                Event : "click",
+                Speed : 100,
+                Left : 0,
+                Top : 28,
+                format : "-",
+                Timeout : 100
+            });
+        })
+    </script>
+    <title>查询报表</title>
+</head>
+<body>
+
+<div id="header">
+    <div id="logo">
+        <img src="images/logo.png" alt="">
+    </div>
+    <div class="login">
+        <span>欢迎您：</span><span class="companyName"></span>
+        <a href="###"><span class="repair">修改密码</span></a>
+        <a href="###"><span class="out">退出</span></a>
+    </div>
+</div>
+<div id="body" class="clearfix">
+    <div class="account">
+        <ul>
+            <li class="ol1"><i class="iconfont icon-zhanghua"></i>账户信息</li>
+            <li class="ol2"><i class="iconfont icon-jiekouguanlir"></i>接口记录</li>
+            <li class="active ol3"><i class="iconfont icon-msnui-pie-chart iActive"></i>查询报表</li>
+            <li class="ol4"><i class="iconfont icon-chongzhi"></i>账户充值</li>
+            <li class="ol5"><i class="iconfont icon-chongzhijilu"></i>充值记录</li>
+            <li class="ol6"><i class="iconfont icon-fcstubiao17"></i>客户管理</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="title">
+            查询报表
+        </div>
+        <div class="search">
+            公司名称 <input id="companyName" type="text">
+            开始时间 <input id="portStartTime" name="portStartTime" type="text" class="jcDate"><br>
+            结束时间 <input id="portEndTime" name="portStartTime" type="text" class="jcDate">
+            接口名称 <select name="interfaceName" class="interfaceName">
+        </select>
+            <div class="button button1">
+                <a class="port" href="###">查询</a>
+                <a class="reset" href="###">重置</a>
+            </div>
+        </div>
+        <div class="table table-f">
+            <table >
+                <tr>
+                    <th>公司名称</th>
+                    <th>时间</th>
+                    <th>接口名称</th>
+                    <th>计费次数</th>
+                    <th>不计费次数</th>
+                    <th>消费金额（元）</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <p class="page">为您搜索到<span class="all">...</span>条记录 当前 <span class="start">1</span>/<span class="allPage">100</span>页
+                <a class="home" href="###">首页</a>
+                <a class="prev" href="###">上一页</a>
+                <a class="next" href="###">下一页</a>
+                <a class="end" href="###">尾页</a>
+                转到<select id="pullDown" name="">
+                </select> 页
+            </p>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>联系我们：<span>010-59423168</span> 企业邮箱：<span>service@funinbook.com</span></p>
+    <p>© 2015-2016 北京风影科技有限公司 京ICP备16015906号</p>
+</div>
+</body>
+</html>

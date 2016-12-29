@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script type="text/javascript" src="js/jquery.1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/consumer.js"></script>
+    <script src="js/rollups/tripledes.js"></script>
+    <script src="js/components/mode-ecb.js"></script>
+    <title>客户管理</title>
+</head>
+<body>
+
+<div id="header">
+    <div id="logo">
+        <img src="images/logo.png" alt="">
+    </div>
+    <div class="login">
+        <span>欢迎您：</span><span class="companyName"></span>
+        <a href="###"><span class="repair">修改密码</span></a>
+        <a href="###"><span class="out">退出</span></a>
+    </div>
+</div>
+<div id="body" class="clearfix">
+    <div class="account">
+        <ul>
+            <li class="ol1"><i class="iconfont icon-zhanghua"></i>账户信息</li>
+            <li class="ol2"><i class="iconfont icon-jiekouguanlir"></i>接口记录</li>
+            <li class="ol3"><i class="iconfont icon-msnui-pie-chart"></i>查询报表</li>
+            <li class="ol4"><i class="iconfont icon-chongzhi"></i>账户充值</li>
+            <li class="ol5"><i class="iconfont icon-chongzhijilu"></i>充值记录</li>
+            <li class="active ol6"><i class="iconfont icon-fcstubiao17 iActive"></i>客户管理</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="title">
+            企业信息
+        </div>
+        <div class="zhez"></div>
+        <div class="search">
+            企业名称 <input id="companyName" type="text">
+            <div class="button">
+                <a class="first" href="###">查询</a>
+                <a class="add" href="###">增加</a>
+                <a href="###" class="change">修改</a>
+
+            </div>
+        </div>
+        <div class="table table-q">
+            <table>
+                <tr>
+                    <th>选择</th>
+                    <th>企业名称</th>
+                    <th>企业地址</th>
+                    <th>银行账户</th>
+                    <th>开户行</th>
+                    <th>联系人</th>
+                    <th>企业邮箱</th>
+                    <th>联系电话</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <p class="page pageA">为您搜索到<span class="all">...</span>条记录 当前 <span class="start">1</span>/<span class="allPage">100</span>页
+                <a class="home" href="###">首页</a>
+                <a class="prev" href="###">上一页</a>
+                <a class="next" href="###">下一页</a>
+                <a class="end" href="###">尾页</a>
+                转到<select id="pullDown" name="">
+                </select> 页
+            </p>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>联系我们：<span>010-59423168</span> 企业邮箱：<span>service@funinbook.com</span></p>
+    <p>© 2015-2016 北京风影科技有限公司 京ICP备16015906号</p>
+</div>
+
+<div class="firm" style="display: none;">
+    <form action="">
+        <span class="close"></span>
+        企业ID：&ensp;&ensp;<input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" id="firmId" ><br>
+        企业名称：<input type="text" id="firmName" value="风影科技"><br>
+        企业地址：<input type="text" id="address" value="北京市海淀区清河嘉园"><br>
+        银行账户：<input type="text" id="card" value="8888 8888 8888 8888 88"><br>
+        开户行：&ensp;&ensp;<input type="text" id="bank" value="民生银行上地支行"><br>
+        联系人：&emsp;<input type="text" id="contact" value="张某某"><br>
+        企业邮箱：<input type="text" id="email" value="123456@qiye.com"><br>
+        联系电话：<input type="text" id="tel" value="010-88888888"><br>
+    </form>
+    <input class="btn-c" type="button" value="保 存">
+</div>
+<div class="firm1" style="display:none;">
+    <form action="">
+        <span class="close1"></span>
+        企业ID：&ensp;&ensp;<input disabled="disabled" type="text" class="firmId"><br>
+        企业名称：<input type="text" class="firmName" value="风影科技"><br>
+        企业地址：<input type="text" class="address" value="北京市海淀区清河嘉园"><br>
+        银行账户：<input type="text" class="card" value="8888 8888 8888 8888 88"><br>
+        开户行：&ensp;&ensp;<input type="text" class="bank" value="民生银行上地支行"><br>
+        联系人：&emsp;<input type="text" class="contact" value="张某某"><br>
+        企业邮箱：<input type="text" class="email" value="123456@qiye.com"><br>
+        联系电话：<input type="text" class="tel" value="010-88888888"><br>
+        账号状态：&ensp;&ensp;<select name="status" class="status">
+        <option value="可用">可用</option>
+        <option value="不可用">不可用</option>
+    </select>
+    </form>
+    <input class="btn-c1" type="button" value="保 存">
+</div>
+</body>
+</html>
