@@ -12,12 +12,16 @@ $(function () {
     model.start="0";
     //页大小
     model.limit="10";
+
+    model.userRole="user";
     //直接加载
     funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumer);
 
 
     // 点击查询
     $('.first').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         $('tr td').text("");
         //new一个请求参数对象
         var model = new ParamsModel();
@@ -27,14 +31,22 @@ $(function () {
         model.start="0";
         //页大小
         model.limit="10";
+
+        model.userRole="user";
         //直接加载
         funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumerClick);
     });
     //点击下一页
     $('.next').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var nowPage=$('.start').text();
         var allPage = $('.allPage').text();
         if(nowPage===allPage){
+            $loading.hide();
+            $zhez.hide();
             return false;
         }else{
             nowPage++;
@@ -47,15 +59,23 @@ $(function () {
         model.start=(nowPage-1)*10+"";
         //页大小
         model.limit="10";
+
+        model.userRole="user";
         //直接加载
         funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumerNextPage);
         $('.start').text(nowPage);
     });
     //点击上一页
     $('.prev').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var nowPage=$('.start').text();
         if(nowPage<=1){
             nowPage=1;
+            $loading.hide();
+            $zhez.hide();
         }else{
             nowPage--;
         }
@@ -67,12 +87,16 @@ $(function () {
         model.start=(nowPage-1)*10+"";
         //页大小
         model.limit="10";
+
+        model.userRole="user";
         //直接加载
         funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumerPrevPage);
         $('.start').text(nowPage);
     });
     //点击首页
     $('.home').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         //new一个请求参数对象
         var model = new ParamsModel();
         //公司名称
@@ -81,12 +105,16 @@ $(function () {
         model.start="0";
         //页大小
         model.limit="10";
+
+        model.userRole="user";
         //直接加载
         funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumerFirstPage);
         $('.start').text(1);
     });
     //点击尾页
     $('.end').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var allPage = $('.allPage').text();
         $('.start').text(allPage);
         //new一个请求参数对象
@@ -97,12 +125,16 @@ $(function () {
         model.start=(allPage-1)*10+"";
         //页大小
         model.limit="10";
+
+        model.userRole="user";
         //直接加载
         funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumerLastPage);
         $('.start').text(allPage);
     });
     //下拉选择
     $('#pullDown').change(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var  jumpPage = $(this).val();
         $('.start').text(jumpPage);
 
@@ -114,6 +146,8 @@ $(function () {
         model.start=(jumpPage-1)*10+"";
         //页大小
         model.limit="10";
+
+        model.userRole="user";
         //直接加载
         funinbookSecurityAjax("/admin/getAllUserInfo", model, "POST", "true", adminConsumerPullDownPage);
     });
@@ -123,7 +157,7 @@ $(function () {
     });
     //增加企业
 $('.add').click(function () {
-    $('.zhez').show();
+    $('.zhezhao').show();
     $('.firm').attr('style','display:block');
     $('.firm input').each(function () {
         $(this).not('.btn-c').val("");
@@ -148,6 +182,8 @@ $('.add').click(function () {
         model.email=$('#email').val();
         //电话
         model.userTel=$('#tel').val();
+        // 接口平台账户ID
+        model.interfaceUserId=$('#uid').val();
         funinbookSecurityAjax("/admin/addUser", model, "POST", "true", adminConsumerAdd);
 });
 });
@@ -160,25 +196,32 @@ $('.change').click(function () {
             if(checked.length>1){
                 alert('请选择其中一个');
                 return false;
-            }
+        }
             var arr = [];
             var goux =checked.parent().nextAll();
             arr.push(checked.val());
             $(goux).each(function (index) {
                 arr.push($(goux[index]).text());
             });
-            $('.zhez').show();
+            $('.zhezhao').show();
             $('.firm1').attr('style','display:block');
             var input = $('.firm1 input');
             $(arr).each(function (index) {
                 input[index].value = arr[index];
             });
+            //判断账户状态可用不可用
+            var xTr= checked.parent().parent().attr("id");
+            if(xTr==1){
+                $('.status option:nth-of-type(1)').attr("selected","selected");
+            }else{
+                $('.status option:nth-of-type(2)').attr("selected","selected");
+            }
             $('.btn-c1').click(function () {
                 var selected = $('.status option:selected').val();
                 var status = null;
-                if(selected=="可用"){
+                if(selected==1){
                     status = 1;
-                }else if(selected=="不可用"){
+                }else if(selected==0){
                     status = 0;
                 }
                 //new一个请求参数对象
@@ -199,6 +242,8 @@ $('.change').click(function () {
                 model.email=$('.email').val();
                 //电话
                 model.userTel=$('.tel').val();
+                // 接口账户ID
+                model.interfaceUserId=$('.uid').val();
                 //账户状态
                 model.status=status+"";
                 funinbookSecurityAjax("/admin/updateUserInfo", model, "POST", "true", adminConsumerChange);
@@ -213,11 +258,11 @@ $('.change').click(function () {
 });
 //关闭弹出层
 $('.close').click(function () {
-    $('.zhez').hide();
+    $('.zhezhao').hide();
     $('.firm').attr('style','display:none')
 });
 $('.close1').click(function () {
-    $('.zhez').hide();
+    $('.zhezhao').hide();
     $('.firm1').attr('style','display:none')
 });
 });
@@ -245,7 +290,11 @@ function  adminConsumer(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
+            $('.table-q tr:nth-of-type('+(i+2)+')').attr('id',data.msg[i].status);
         }
+        $('#loading').hide();
+        $('.zhez').hide();
     } else {
         //状态码对应信息不能为空
         if(success.length != 0){
@@ -261,6 +310,8 @@ function  adminConsumer(data){
 function  adminConsumerClick(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -281,11 +332,16 @@ function  adminConsumerClick(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0){
-            alert(success);
+        if(success !== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -296,6 +352,8 @@ function  adminConsumerClick(data){
 function  adminConsumerNextPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -309,11 +367,16 @@ function  adminConsumerNextPage(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0){
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -325,6 +388,8 @@ function  adminConsumerNextPage(data){
 function  adminConsumerPrevPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -338,11 +403,16 @@ function  adminConsumerPrevPage(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0){
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -353,6 +423,8 @@ function  adminConsumerPrevPage(data){
 function  adminConsumerFirstPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -366,11 +438,16 @@ function  adminConsumerFirstPage(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0){
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -382,6 +459,8 @@ function  adminConsumerFirstPage(data){
 function  adminConsumerLastPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -395,21 +474,28 @@ function  adminConsumerLastPage(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0){
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
 /**
- * AJAX回调函数,供尾页用
+ * AJAX回调函数,供点击下拉页用
  * @param data 数据
  */
 function  adminConsumerPullDownPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -423,11 +509,16 @@ function  adminConsumerPullDownPage(data){
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].userName);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(7)').text(data.msg[i].email);
             $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(8)').text(data.msg[i].userTel);
+            $('.table-q tr:nth-of-type('+(i+2)+') td:nth-of-type(9)').text(data.msg[i].interfaceUserId);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0){
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -441,7 +532,7 @@ function  adminConsumerAdd(data){
     var success = this.success(data.success);
     //判断后台是否返回正确状态
     if(success == true) {
-        $('.zhez').hide();
+        $('.zhezhao').hide();
         window.location.reload();
     } else {
         //状态码对应信息不能为空
@@ -455,12 +546,13 @@ function  adminConsumerAdd(data){
  * @param data 数据
  */
 function  adminConsumerChange(data){
+    console.log(data);
     //获取状态码信息
     var success = this.success(data.success);
     //判断后台是否返回正确状态
     if(success == true) {
         $('.firm1').hide();
-        $('.zhez').hide();
+        $('.zhezhao').hide();
         window.location.reload();
     } else {
         //状态码对应信息不能为空
@@ -479,6 +571,8 @@ function ParamsModel() {
     var start;
     //页大小
     var limit;
+
+    var userRole;
 }
 function ParamsModelAdd() {
     //公司ID
@@ -497,6 +591,8 @@ function ParamsModelAdd() {
     var email;
     //联系电话
     var userTel;
+    // 接口平台账户ID
+    var interfaceUserId;
 }
 function ParamsModelChange() {
     //公司ID
@@ -515,6 +611,8 @@ function ParamsModelChange() {
     var email;
     //联系电话
     var userTel;
+    // 接口平台账户ID
+    var interfaceUserId;
     //账户状态
     var status;
 }

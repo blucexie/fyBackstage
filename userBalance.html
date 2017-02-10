@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <script type="text/javascript" src="js/jquery.1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/userBalance.js"></script>
+    <script src="js/rollups/tripledes.js"></script>
+    <script src="js/components/mode-ecb.js"></script>
+    <title>企业信息</title>
+</head>
+<body>
+<div class="zhez"></div>
+<div id="loading" class="loader-inner line-scale">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<div id="header">
+    <div id="logo">
+        <img src="images/logo.png" alt="">
+    </div>
+    <div class="login">
+        <span>欢迎您：</span><span class="companyName">北京风影数据科技有限公司</span>
+        <a href="###"><span class="repair">修改密码</span></a>
+        <a href="###"><span class="out">退出</span></a>
+    </div>
+</div>
+<div id="body" class="clearfix">
+    <div class="account">
+        <ul>
+            <li class="ol1"><i class="iconfont icon-zhanghu"></i>账户信息</li>
+            <li class="ol2"><i class="iconfont icon-jiekouguanlir"></i>接口记录</li>
+            <li class="ol3"><i class="iconfont icon-baobiao"></i>查询报表</li>
+            <li class="ol4"><i class="iconfont icon-chongzhi"></i>账户充值</li>
+            <li class="ol5"><i class="iconfont icon-chongzhijilu"></i>充值记录</li>
+            <li class="active ol7"><i class="iconfont icon-yue iActive"></i>余额提醒</li>
+            <li class="ol6"><i class="iconfont icon-fcstubiao17 "></i>企业信息</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="title">
+            余额提醒
+        </div>
+        <div class="remind">
+            <form action="">
+                <p>邮箱提醒：</p>
+                <label>启用：<input class="start eStart" name="change" type="radio" value="" /></label>
+                <label>停用：<input class="stop eStop" name="change" type="radio" value="" /><br></label>
+                <label for="email">邮箱地址：&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label><input id="email" type="text" value="" /><br>
+                <label for="msgAdd">抄送人邮箱地址：</label><input id="msgAdd" type="text" value="" /><br>
+                <label for="cAdd">密送人邮箱地址：</label><input id="cAdd" type="text" value="" /><br>
+                <label for="threshold">提醒阈值：&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label><input id="threshold" type="text" value="" /><br>
+                <input class="btn eBtn" type="button" value="保 存">
+            </form>
+            <form action="" style="margin-top: 30px">
+                <p>短信提醒：</p>
+                <label>启用：<input class="start pStart" name="change" type="radio" value="" /></label>
+                <label>停用：<input class="stop pStop" name="change" type="radio" value="" /><br></label>
+                <label for="phone">手机号码：&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label><input id="phone" type="text" value="" /><br>
+                <label for="threshold1">提醒阈值：&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;</label><input id="threshold1" type="text" value="" /><br>
+                <input class="btn pBtn" type="button" value="保 存">
+            </form>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <p>联系我们：<span>010-59423168</span> 企业邮箱：<span>service@funinbook.com</span></p>
+    <p>© 2015-2016 北京风影科技有限公司 京ICP备16015906号</p>
+</div>
+</body>
+</html>

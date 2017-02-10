@@ -28,6 +28,8 @@ $(function () {
 
 // 点击查询
     $('.port').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         $('tr td').text("");
         var selected = $('.interfaceName option:selected');
         var interfaceName =selected.val();
@@ -51,10 +53,16 @@ $(function () {
 
     //点击下一页
     $('.next').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var nowPage=$('.start').text();
         var allPage = $('.allPage').text();
         var interfaceId = $('.interfaceName option:selected').attr('id');
         if(nowPage===allPage){
+            $loading.hide();
+            $zhez.hide();
             return false;
         }else{
             nowPage++;
@@ -78,10 +86,16 @@ $(function () {
     });
     //点击上一页
     $('.prev').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var nowPage=$('.start').text();
         var interfaceId = $('.interfaceName option:selected').attr('id');
         if(nowPage<=1){
             nowPage=1;
+            $loading.hide();
+            $zhez.hide();
         }else{
             nowPage--;
         }
@@ -104,8 +118,9 @@ $(function () {
     });
     //点击首页
     $('.home').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var interfaceId = $('.interfaceName option:selected').attr('id');
-
         //new一个请求参数对象
         var model = new ParamsModel();
         //起始时间
@@ -125,7 +140,8 @@ $(function () {
     });
     //点击尾页
     $('.end').click(function () {
-
+        $('#loading').show();
+        $('.zhez').show();
         var allPage = $('.allPage').text();
         var interfaceId = $('.interfaceName option:selected').attr('id');
 
@@ -149,6 +165,8 @@ $(function () {
     });
     //下拉选择
     $('#pullDown').change(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var  jumpPage = $(this).val();
         var interfaceId = $('.interfaceName option:selected').attr('id');
         $('.start').text(jumpPage);
@@ -215,10 +233,12 @@ function  adminReport(data){
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
         }
+        $('#loading').hide();
+        $('.zhez').hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }
@@ -230,6 +250,8 @@ function  adminReport(data){
 function  adminReportClick(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -248,10 +270,14 @@ function  adminReportClick(data){
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success !== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -262,6 +288,8 @@ function  adminReportClick(data){
 function  adminReportNextPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -273,10 +301,14 @@ function  adminReportNextPage(data){
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -288,6 +320,8 @@ function  adminReportNextPage(data){
 function  adminReportPrevPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -299,10 +333,14 @@ function  adminReportPrevPage(data){
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -313,6 +351,8 @@ function  adminReportPrevPage(data){
 function  adminReportFirstPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -324,14 +364,48 @@ function  adminReportFirstPage(data){
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
-
+/**
+ * AJAX回调函数,供尾页用
+ * @param data 数据
+ */
+function  adminReportLastPage(data){
+    //获取状态码信息
+    var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
+    //判断后台是否返回正确状态
+    if(success == true) {
+        $('tr td').text("");
+        for(var i =0;i<data.msg.length;i++){
+            $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(1)').text(data.msg[i].name);
+            $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].time);
+            $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].interfaceName);
+            $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(4)').text(data.msg[i].billingNum);
+            $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
+            $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
+        }
+        $loading.hide();
+        $zhez.hide();
+    } else {
+        //状态码对应信息不能为空
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
+        }
+    }
+}
 
 /**
  * AJAX回调函数,供下拉页用
@@ -340,6 +414,8 @@ function  adminReportFirstPage(data){
 function  adminReportPullDownPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -351,10 +427,14 @@ function  adminReportPullDownPage(data){
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(5)').text(data.msg[i].noBillingFee);
             $('.table-f tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].billingFee);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }

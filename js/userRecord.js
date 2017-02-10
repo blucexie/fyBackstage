@@ -21,12 +21,14 @@ $(function () {
     funinbookSecurityAjax("/user/report/getRechargeRecord", model, "POST", "true", getRecord);
     // 点击查询
     $('.port').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var selected = $('.costWay option:selected').val();
         var channel = null;
         if(selected=="支付宝"){
-            channel=1;
+            channel="1";
         }else if(selected=="管理员"){
-            channel=0;
+            channel="0";
         }
         //new一个请求参数对象
         var model = new ParamsModel();
@@ -44,16 +46,22 @@ $(function () {
     });
     //点击下一页
     $('.next').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var channel = null;
         if(selected=="支付宝"){
-            channel=1;
+            channel="1";
         }else if(selected=="管理员"){
-            channel=0;
+            channel="0";
         }
         var $start =$('.start');
         var nowPage=$start.text();
         var allPage = $('.allPage').text();
         if(nowPage===allPage){
+            $loading.hide();
+            $zhez.hide();
             return false;
         }else{
             nowPage++;
@@ -74,16 +82,22 @@ $(function () {
     });
         //点击上一页
         $('.prev').click(function () {
+            var $loading = $('#loading');
+            var $zhez = $('.zhez');
+            $loading.show();
+            $zhez.show();
             var channel = null;
             if(selected=="支付宝"){
-                channel=1;
+                channel="1";
             }else if(selected=="管理员"){
-                channel=0;
+                channel="0";
             }
             var $start =$('.start');
             var nowPage=$start.text();
             if(nowPage<=1){
                 nowPage=1;
+                $loading.hide();
+                $zhez.hide();
             }else{
                 nowPage--;
             }
@@ -103,11 +117,13 @@ $(function () {
         });
     //点击首页
     $('.home').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var channel = null;
         if(selected=="支付宝"){
-            channel=1;
+            channel="1";
         }else if(selected=="管理员"){
-            channel=0;
+            channel="0";
         }
         var model = new ParamsModel();
         //起始时间
@@ -125,12 +141,13 @@ $(function () {
     });
     //点击尾页
     $('.end').click(function () {
-
+        $('#loading').show();
+        $('.zhez').show();
         var channel = null;
         if(selected=="支付宝"){
-            channel=1;
+            channel="1";
         }else if(selected=="管理员"){
-            channel=0;
+            channel="0";
         }
         var allPage = $('.allPage').text();
         var $start =$('.start');
@@ -151,13 +168,14 @@ $(function () {
     });
     //下拉选择
     $('#pullDown').change(function () {
-
+        $('#loading').show();
+        $('.zhez').show();
         var  jumpPage = $(this).val();
         var channel = null;
         if(selected=="支付宝"){
-            channel=1;
+            channel="1";
         }else if(selected=="管理员"){
-            channel=0;
+            channel="0";
         }
         $('.start').text(jumpPage);
         var model = new ParamsModel();
@@ -218,10 +236,12 @@ function  getRecord(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $('#loading').hide();
+        $('.zhez').hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }
@@ -232,6 +252,8 @@ function  getRecord(data){
 function  getRecordClick(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -268,10 +290,14 @@ function  getRecordClick(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success !== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -282,6 +308,8 @@ function  getRecordClick(data){
 function  getRecordNextPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -311,10 +339,14 @@ function  getRecordNextPage(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -325,6 +357,8 @@ function  getRecordNextPage(data){
 function  getRecordPrevPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -354,10 +388,14 @@ function  getRecordPrevPage(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -368,6 +406,8 @@ function  getRecordPrevPage(data){
 function  getRecordFirstPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -397,10 +437,14 @@ function  getRecordFirstPage(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -411,6 +455,8 @@ function  getRecordFirstPage(data){
 function  getRecordLastPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -440,10 +486,14 @@ function  getRecordLastPage(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -454,6 +504,8 @@ function  getRecordLastPage(data){
 function  getRecordPullDownPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -483,10 +535,14 @@ function  getRecordPullDownPage(data){
             }
             $('.table-c tr:nth-of-type('+(i+2)+') td:nth-of-type(6)').text(data.msg[i].remark);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }

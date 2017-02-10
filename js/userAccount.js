@@ -74,8 +74,8 @@ function executeAccountInfo(data) {
 		this.setUserInfo(formatJson(data.msg));
 	} else {
 		// 状态码对应信息不能为空
-		if (success.length != 0) {
-			alert(success);
+		if(success!== 0) {
+			return success;
 		}
 	}
 }
@@ -88,11 +88,13 @@ function executeUserBalance(data) {
 	var success = this.success(data.success);
 	// 判断后台是否返回正确状态
 	if (success == true) {
-		$('.money span').text(data.msg)
+		$('.money span').text(data.msg);
+		$('#loading').hide();
+		$('.zhez').hide();
 	} else {
 		// 状态码对应信息不能为空
-		if (success.length != 0) {
-			alert(success);
+		if(success!== 0) {
+			return success;
 		}
 	}
 }

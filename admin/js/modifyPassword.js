@@ -11,7 +11,7 @@ $(function () {
             var model = new ParamsModel();
             //输入原始密码
             model.password=$oldPassword.val();
-            funinbookSecurityAjax("/user/verifyOldPassword", model, "POST", "true", verifyPassword);
+            funinbookSecurityAjax("/admin/verifyOldPassword", model, "POST", "true", verifyPassword);
 
         }else if($oldPassword.val()==""){
             $('.hint').text("请输入原始密码").css('color','red')

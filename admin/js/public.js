@@ -123,6 +123,8 @@ function success(success) {
         $('.all').text(0);
         $('.allPage').text(0);
         $('#pullDown').html("");
+        $('#loading').hide();
+        $('.zhez').hide();
     } else if (success == 8) {
         return '操作失败';
     } else if (success == 9) {
@@ -193,26 +195,30 @@ function clearSessionStorage() {
 
 /**
  * 获取当前年月日（yyyyMMdd）
- *
+ * 
  * @returns
  */
 function getNowDate1() {
-    // 当前时间对象
-    var thedate = new Date();
-    // 获取当前年
-    var yyyy = thedate.getFullYear();
-    // 获取当前月
-    var MM = thedate.getMonth() + 1;
-    // 获取当前日
-    var dd = thedate.getDate();
-    // 格式化成2位
-    if (dd.toString().length == 1) {
-        dd = "0" + dd;
-    }
-    // (yyyyMMdd格式)
-    var nowDate = yyyy.toString() + MM.toString() + dd.toString();
-    // 返回日期
-    return nowDate;
+	// 当前时间对象
+	var thedate = new Date();
+	// 获取当前年
+	var yyyy = thedate.getFullYear();
+	// 获取当前月
+	var MM = thedate.getMonth() + 1;
+	// 获取当前日
+	var dd = thedate.getDate();
+	// 格式化成2位
+	if (dd.toString().length == 1) {
+		dd = "0" + dd;
+	}
+	// 格式化成2位
+	if (MM.toString().length == 1) {
+		MM = "0" + MM;
+	}
+	// (yyyyMMdd格式)
+	var nowDate = yyyy.toString() + MM.toString() + dd.toString();
+	// 返回日期
+	return nowDate;
 }
 
 /**

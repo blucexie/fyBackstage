@@ -56,11 +56,11 @@ table {border-collapse:collapse;}
 #body .content .pageI{margin-top: 35px;}
 /*企业信息*/
 #body .content .firm{margin-left: 354px;margin-top: 20px;font-size: 16px;}
-#body .content .firm input{width: 300px;height: 25px; margin-top: 10px; color: #666;text-indent:10px; }
+#body .content .firm input{width: 300px;height: 30px; margin-top: 25px; color: #666;text-indent:10px; }
 #body .content .firm .checkbox{width: 20px;height: 20px;vertical-align: -4px;margin-left: 80px;}
 #body .content .firm .remind{width: 137px;}
 #body .content .firm .btn{width: 140px;height: 34px; background: #019fe6;border: none;border-radius: 5px;color: #fff;font-size: 14px;font-weight: 700;}
-#body .content .firm .btn2{position: absolute;right: 275px;bottom: 10px;text-indent: 0;}
+#body .content .firm .btn2{position: absolute;right: 275px;bottom: 10px;text-indent: 0;cursor: pointer;}
 #body .content .firm .yuan{display: inline-block;width: 25px;height: 25px;line-height: 25px;text-align: center; border: 1px solid #ccc;border-left: none;vertical-align: -1px;background: #f5f5f5;color: #333;}
 
 /*账户充值 k-recharge*/
@@ -97,6 +97,34 @@ table {border-collapse:collapse;}
 #body .content .query li:nth-of-type(2){background: #f7ab61 url("../images/data.png") no-repeat;background-position:10px 18px;}
 /*#body .content .query li:nth-of-type(3){background: #688bf0 url("../images/error.png") no-repeat;background-position:10px 18px;}
 #body .content .query li:nth-of-type(4){background: #ff6f6f url("../images/percent.png") no-repeat;background-position:10px 18px;margin-right: 0;}*/
+/*余额提醒*/
+#body .content .remind{
+    margin-top: 30px;
+    margin-left: 100px;
+}
+#body .content .remind input{
+    width: 160px;
+    height:30px;
+    margin-top: 10px;
+    text-indent: 8px;
+}
+#body .content .remind input[type="radio"]{
+    width: 25px;
+    height: 25px;
+}
+#body .content .remind .btn{
+    width: 100px;
+    height: 30px;
+    margin-top: 30px;
+    margin-left: 200px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    background: #019fe6;
+    cursor: pointer;
+}
+
 
 /*修改密码*/
 
@@ -130,4 +158,74 @@ input.error {border: 1px solid red !important;}
     #body .content .table-j tr td{width:325px;}
     #body .content .table-f tr td{width:260px;}
     #body .content .table-c tr td{width:227px;}
+}
+/*loading*/
+@-webkit-keyframes line-scale {
+    0% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); }
+
+    50% {
+        -webkit-transform: scaley(0.4);
+        transform: scaley(0.4); }
+
+    100% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); } }
+@keyframes line-scale {
+    0% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); }
+
+    50% {
+        -webkit-transform: scaley(0.4);
+        transform: scaley(0.4); }
+
+    100% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); } }
+
+.line-scale > div:nth-child(1) {
+    -webkit-animation: line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(2) {
+    -webkit-animation: line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(3) {
+    -webkit-animation: line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(4) {
+    -webkit-animation: line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(5) {
+    -webkit-animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div {
+    background-color: #019fe6;
+    width: 4px;
+    height: 35px;
+    border-radius: 2px;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block; }
+/*遮罩*/
+.zhez{
+    width:100%;
+    height: 100%;
+    background:#000;
+    opacity:.0;
+    filter: alpha(opacity=0);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+#loading{
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-36px;
+    margin-top:-21px;
+    z-index: 99999
 }

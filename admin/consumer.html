@@ -13,7 +13,14 @@
     <title>客户管理</title>
 </head>
 <body>
-
+<div class="zhez"></div>
+<div id="loading" class="loader-inner line-scale">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 <div id="header">
     <div id="logo">
         <img src="images/logo.png" alt="">
@@ -39,7 +46,7 @@
         <div class="title">
             企业信息
         </div>
-        <div class="zhez"></div>
+        <div class="zhezhao"></div>
         <div class="search">
             企业名称 <input id="companyName" type="text">
             <div class="button">
@@ -60,28 +67,10 @@
                     <th>联系人</th>
                     <th>企业邮箱</th>
                     <th>联系电话</th>
+                    <th>接口账户ID</th>
                 </tr>
                 <tr>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -100,28 +89,10 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -140,15 +111,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -160,7 +122,64 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
             </table>
             <p class="page pageA">为您搜索到<span class="all">...</span>条记录 当前 <span class="start">1</span>/<span class="allPage">100</span>页
                 <a class="home" href="###">首页</a>
@@ -189,6 +208,7 @@
         联系人：&emsp;<input type="text" id="contact" value="张某某"><br>
         企业邮箱：<input type="text" id="email" value="123456@qiye.com"><br>
         联系电话：<input type="text" id="tel" value="010-88888888"><br>
+        接口账户ID：<input type="text" id="uid" value="" style="margin-left: 2px"><br>
     </form>
     <input class="btn-c" type="button" value="保 存">
 </div>
@@ -203,9 +223,10 @@
         联系人：&emsp;<input type="text" class="contact" value="张某某"><br>
         企业邮箱：<input type="text" class="email" value="123456@qiye.com"><br>
         联系电话：<input type="text" class="tel" value="010-88888888"><br>
-        账号状态：&ensp;&ensp;<select name="status" class="status">
-        <option value="可用">可用</option>
-        <option value="不可用">不可用</option>
+        接口账户ID：<input type="text" class="uid" value="admin" style="margin-left: 2px"><br>
+        账号状态：&ensp;&ensp;<select name="status" class="status" value="">
+        <option value="1">可用</option>
+        <option value="0">不可用</option>
     </select>
     </form>
     <input class="btn-c1" type="button" value="保 存">

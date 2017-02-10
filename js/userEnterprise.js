@@ -56,14 +56,16 @@ function executeAccountInfo(data) {
             $("input[name='message']").prop("checked",true);
             $("input[name='email1']").prop("checked",true);
         }
+        $('#loading').hide();
+        $('.zhez').hide();
         //清除用户数据
      //   this.clearUserInfo();
         //向session中保存数据
      //   this.setUserInfo(formatJson(data.msg));
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+           return success;
         }
     }
 }

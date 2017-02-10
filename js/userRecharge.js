@@ -22,11 +22,13 @@ function executeRechargeBalance(data) {
     var success = this.success(data.success);
     //判断后台是否返回正确状态
     if(success == true) {
-        $('.balance').text(data.msg)
+        $('.balance').text(data.msg);
+        $('#loading').hide();
+        $('.zhez').hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }

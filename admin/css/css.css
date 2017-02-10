@@ -61,17 +61,17 @@ table {border-collapse:collapse;  }
 #body .content .firm .ck{width: 25px;height: 20px;margin-top: 15px;}
 #body .content .btn{width: 140px;height: 34px; background: #019fe6;border: none;border-radius: 5px;color: #fff;font-size: 14px;font-weight: 700;}
 #body .content .btn1{position: absolute;right: 275px;bottom: 10px;}*/
-.firm{z-index: 101; position: absolute;top: 30%;left: 40%; width: 430px;height: 430px;background: #fff; padding-left: 70px;margin-left: 30px;margin-bottom: 30px;border-radius: 10px;}
+.firm{z-index: 101; position: absolute;top: 30%;left: 40%; width: 430px;height: 480px;background: #fff; padding-left: 70px;margin-left: 30px;margin-bottom: 30px;border-radius: 10px;}
 .firm input{margin: 20px 0 0 20px;border: 1px solid #5dace7;width: 180px;height: 24px;text-indent: 5px;}
 .firm .btn-c{width: 100px;height: 30px;background: #019fe6;border-radius: 5px;position: absolute;right: 50px;bottom: 15px;color: #fff;}
 .firm span{width: 24px;height: 24px; background: url("../images/quxiao.png") no-repeat;position: absolute;right: 10px;top: 10px;}
-.firm1{z-index: 101; position: absolute;top: 30%;left: 40%; width: 440px;height: 470px;background: #fff; padding-left: 70px;margin-left: 30px;margin-bottom: 30px;border-radius: 10px;}
+.firm1{z-index: 101; position: absolute;top: 30%;left: 40%; width: 440px;height: 520px;background: #fff; padding-left: 70px;margin-left: 30px;margin-bottom: 30px;border-radius: 10px;}
 .firm1 input{margin: 20px 0 0 20px;border: 1px solid #5dace7;width: 180px;height: 24px;text-indent: 5px;}
 .firm1 .btn-c1{width: 100px;height: 30px;background: #019fe6;border-radius: 5px;position: absolute;right: 50px;bottom: 15px;color: #fff;}
 .firm1 span{width: 24px;height: 24px; background: url("../images/quxiao.png") no-repeat;position: absolute;right: 10px;top: 10px;}
-.firm1 select{width:182px;height: 26px; border: 1px solid #5dace7;margin-top: 20px;}
+.firm1 select{width:184px;height: 26px; border: 1px solid #5dace7;margin-top: 20px;}
 /*遮罩层*/
-.zhez{
+.zhezhao{
     width:100%;
     height: 100%;
     background:#000;
@@ -83,6 +83,75 @@ table {border-collapse:collapse;  }
     z-index: 100;
     display: none;
 }
+.zhez{
+    width:100%;
+    height: 100%;
+    background:#000;
+    opacity:.0;
+    filter: alpha(opacity=0);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+#loading{
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-36px;
+    margin-top:-21px;
+    z-index: 99999
+}
+/*loading*/
+@-webkit-keyframes line-scale {
+    0% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); }
+
+    50% {
+        -webkit-transform: scaley(0.4);
+        transform: scaley(0.4); }
+
+    100% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); } }
+@keyframes line-scale {
+    0% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); }
+
+    50% {
+        -webkit-transform: scaley(0.4);
+        transform: scaley(0.4); }
+
+    100% {
+        -webkit-transform: scaley(1);
+        transform: scaley(1); } }
+
+.line-scale > div:nth-child(1) {
+    -webkit-animation: line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.1s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(2) {
+    -webkit-animation: line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.2s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(3) {
+    -webkit-animation: line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.3s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(4) {
+    -webkit-animation: line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.4s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div:nth-child(5) {
+    -webkit-animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08);
+    animation: line-scale 1s 0.5s infinite cubic-bezier(.2, .68, .18, 1.08); }
+.line-scale > div {
+    background-color: #019fe6;
+    width: 4px;
+    height: 35px;
+    border-radius: 2px;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block; }
 /*账户充值*/
 #body .content .recharge{margin-left: 30px;margin-top: 38px;}
 /*#body .content .recharge input:nth-of-type(1){width: 200px;height: 30px;margin-bottom: 20px; border: 1px solid #ccc;}*/
@@ -146,7 +215,7 @@ input.error {border: 1px solid red !important;}
     #body .content .table-j tr td{width:260px;}
     #body .content .table-f tr td{width:220px; }
     #body .content .table-c tr td{width:186px;}
-    #body .content .table-q tr td{width: 163px;}
+    #body .content .table-q tr td{width: 145px;}
 }
 
 

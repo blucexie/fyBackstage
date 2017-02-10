@@ -9,6 +9,8 @@ $(function () {
 
     //查询账户余额
     $('.client').change(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var selected = $('.client option:selected');
         var checked = selected.val();
         var userId = selected.attr('id');
@@ -51,8 +53,8 @@ function  adminUserList(data){
         }
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }
@@ -66,10 +68,15 @@ function  adminUserBalance(data){
     //判断后台是否返回正确状态
     if(success == true) {
         $('.balance').text(data.msg);
+        $('#loading').hide();
+        $('.zhez').hide();
     } else {
+    	 $('.balance').text(0);
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $('#loading').hide();
+            $('.zhez').hide();
+            return success;
         }
     }
 }
@@ -87,8 +94,8 @@ function  adminUserCharge(data){
             .animate({marginLeft:'+200px'},5000);
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }

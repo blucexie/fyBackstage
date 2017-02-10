@@ -2,20 +2,32 @@
  * Created by funinbook on 2016/11/28.
  */
 $(function () {
-//判断sessionStorage有没有用户信息,有就从sessionStorage中读取
-    if(getUserInfo() == null) {
-        //发送ajax请求,查询账户信息
-        funinbookSecurityAjax("/admin/account/getConsume", null, "POST", "true", executeAccountInfo);
-    } else {
-        var $span = $('.query li span');
-        //获取用户信息
-        var userInfo = getUserInfo();
-        //填充页面数据
-        $span.eq(0).text(userInfo.nowDayConsume);
-        $span.eq(1).text(userInfo.yeserDayConsume);
-        $span.eq(2).text(userInfo.nowMonthConsume);
-    }
-//发送ajax请求,查询余额信息
+	 if(getUserInfo() == null) {
+		 //上次登录时间
+		 funinbookSecurityAjax("/admin/getUserInfo", null, "POST", "true", adminAccountTime);
+	 }else{
+		 var userInfo = getUserInfo();
+			var time = userInfo.loginTime;
+			time = changeTime(time);
+			function changeTime(str) {
+				var year = str.slice(0, 4);
+				var month = str.slice(4, 6);
+				var day = str.slice(6, 8);
+				var time = str.slice(8, 10);
+				var minute = str.slice(10, 12);
+				var newTime = year + '.' + month + '.' + day + ' ' + time + ':'
+						+ minute;
+				return newTime;
+			}
+			// 填充页面数据
+	        $('.time span').text(time);
+	 }
+	 
+	 
+     //发送ajax请求,查询用户消费信息
+    funinbookSecurityAjax("/admin/account/getConsume", null, "POST", "true", executeAccountInfo);
+    
+    //发送ajax请求,查询余额信息	
     funinbookSecurityAjax("/admin/account/getAllBalance", null, "POST", "true", executeUserBalance);
     /**
      * AJAX回调函数,账户信息用
@@ -35,8 +47,8 @@ $(function () {
             this.setUserInfo(formatJson(data.msg));
         } else {
             //状态码对应信息不能为空
-            if(success.length != 0) {
-                alert(success);
+            if(success!== 0) {
+                return success;
             }
         }
     }
@@ -53,8 +65,8 @@ $(function () {
             $span.eq(3).text(data.msg);
         } else {
             //状态码对应信息不能为空
-            if(success.length != 0) {
-                alert(success);
+            if(success!== 0) {
+                return success;
             }
         }
     }
@@ -67,10 +79,14 @@ $(function () {
     model.start="0";
     //页大小
     model.limit="6";
+    //权限
+    model.userRole="user";
     funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccount);
 
     // 点击查询
     $('.port').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var model = new ParamsModel();
         //公司名称
         model.name=$('#companyName').val();
@@ -78,14 +94,22 @@ $(function () {
         model.start="0";
         //页大小
         model.limit="6";
+        //权限
+        model.userRole="user";
         funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccountClick);
     });
 
     //点击下一页
     $('.next').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var nowPage=$('.start').text();
         var allPage = $('.allPage').text();
         if(nowPage===allPage){
+            $loading.hide();
+            $zhez.hide();
             return false;
         }else{
             nowPage++;
@@ -97,14 +121,22 @@ $(function () {
         model.start=(nowPage-1)*6+"";
         //页大小
         model.limit="6";
+        //权限
+        model.userRole="user";
         funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccountNextPage);
         $('.start').text(nowPage);
     });
     //点击上一页
     $('.prev').click(function () {
+        var $loading = $('#loading');
+        var $zhez = $('.zhez');
+        $loading.show();
+        $zhez.show();
         var nowPage=$('.start').text();
         if(nowPage<=1){
             nowPage=1;
+            $loading.hide();
+            $zhez.hide();
         }else{
             nowPage--;
         }
@@ -116,12 +148,16 @@ $(function () {
         model.start=(nowPage-1)*6+"";
         //页大小
         model.limit="6";
+        //权限
+        model.userRole="user";
         funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccountPrevPage);
         $('.start').text(nowPage);
     });
 
     //点击首页
     $('.home').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var model = new ParamsModel();
         //公司名称
         model.name=$('#companyName').val();
@@ -129,11 +165,15 @@ $(function () {
         model.start="0";
         //页大小
         model.limit="6";
+        //权限
+        model.userRole="user";
         funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccountFirstPage);
         $('.start').text(1);
     });
     //点击尾页
     $('.end').click(function () {
+        $('#loading').show();
+        $('.zhez').show();
         var allPage = $('.allPage').text();
         $('.start').text(allPage);
         var model = new ParamsModel();
@@ -143,12 +183,16 @@ $(function () {
         model.start=(allPage-1)*6+"";
         //页大小
         model.limit="6";
+        //权限
+        model.userRole="user";
         funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccountLastPage);
         $('.start').text(allPage);
     });
 
     //下拉选择
-    $('#pullDown').change(function () {
+    $('#pullDown').change(function (){
+        $('#loading').show();
+        $('.zhez').show();
         var  jumpPage = $(this).val();
         $('.start').text(jumpPage);
         var model = new ParamsModel();
@@ -158,13 +202,13 @@ $(function () {
         model.start=(jumpPage-1)*6+"";
         //页大小
         model.limit="6";
+        //权限
+        model.userRole="user";
         funinbookSecurityAjax("/admin/account/getAllUserBalance", model, "POST", "true", adminAccountPullDownPage);
     });
     $('.reset').click(function () {
         $('.search input').val("")
     });
-    //上次登录时间
-    funinbookSecurityAjax("/admin/getUserInfo", null, "POST", "true", adminAccountTime);
 });
 
 /**
@@ -190,8 +234,8 @@ function  adminAccountTime(data){
         $('.time span').text(time);
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }
@@ -217,10 +261,12 @@ function  adminAccount(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $('#loading').hide();
+        $('.zhez').hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            return success;
         }
     }
 }
@@ -231,6 +277,8 @@ function  adminAccount(data){
 function  adminAccountClick(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -246,10 +294,14 @@ function  adminAccountClick(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success !== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -261,6 +313,8 @@ function  adminAccountClick(data){
 function  adminAccountNextPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -269,10 +323,14 @@ function  adminAccountNextPage(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -284,6 +342,8 @@ function  adminAccountNextPage(data){
 function  adminAccountPrevPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -292,10 +352,14 @@ function  adminAccountPrevPage(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -306,6 +370,8 @@ function  adminAccountPrevPage(data){
 function  adminAccountFirstPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -314,10 +380,14 @@ function  adminAccountFirstPage(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -329,6 +399,8 @@ function  adminAccountFirstPage(data){
 function  adminAccountLastPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -337,20 +409,26 @@ function  adminAccountLastPage(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
 /**
- * AJAX回调函数,供尾页用
+ * AJAX回调函数,供点击下拉页用
  * @param data 数据
  */
 function  adminAccountPullDownPage(data){
     //获取状态码信息
     var success = this.success(data.success);
+    var $loading = $('#loading');
+    var $zhez = $('.zhez');
     //判断后台是否返回正确状态
     if(success == true) {
         $('tr td').text("");
@@ -359,10 +437,14 @@ function  adminAccountPullDownPage(data){
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(2)').text(data.msg[i].balance);
             $('.table-z tr:nth-of-type('+(i+2)+') td:nth-of-type(3)').text(data.msg[i].threshold);
         }
+        $loading.hide();
+        $zhez.hide();
     } else {
         //状态码对应信息不能为空
-        if(success.length != 0) {
-            alert(success);
+        if(success!== 0) {
+            $loading.hide();
+            $zhez.hide();
+            return success;
         }
     }
 }
@@ -376,4 +458,6 @@ function ParamsModel() {
     var start;
     //页大小
     var limit;
+    //权限
+    var userRole;
 }
